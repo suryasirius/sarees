@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Handwoven Kanjivaram, Banarasi, Paithani, Chanderi and cotton sarees. Browse the collection and order on WhatsApp.">
+<title>Traditional Threads</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Marcellus&display=swap">
+<style>
+/* Layout: mobile-first catalogue. Image-led hero, two-up grid on phones widening to four, sticky gallery beside the details on desktop.
+   A single, deliberate cream-and-gold frame so the sarees carry all the colour. */
+:root{
+  --cream:#f8f3ea;
+  --paper:#fffcf6;
+  --ink:#2a2018;
+  --ink-soft:#3d2f23;
+  --muted:#766553;
+  --gold:#b08a45;
+  --gold-deep:#8a6727;
+  --gold-soft:#ece0c6;
+  --line:#e6dbc6;
+  --display:"Marcellus","Cormorant Garamond",Georgia,serif;
+  --body:"Jost","Helvetica Neue",Arial,sans-serif;
+  --gutter:clamp(18px,4.5vw,48px);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:var(--body);font-weight:400;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.eyebrow{margin:0;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-deep);font-weight:500}
+section,[id]{scroll-margin-top:84px}
+
+/* Image boxes (photos fill these) */
+.imgbox{position:relative;display:block;overflow:hidden;background:var(--gold-soft);max-width:100%}
+.imgbox img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:fade .7s ease both}
+@keyframes fade{from{opacity:0}}
+
+/* Header */
+.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(248,243,234,.93);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.head-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:62px;gap:12px}
+.head-link{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);min-height:44px;transition:color .2s}
+.head-link:hover{color:var(--ink)}
+.head-link svg{width:19px;height:19px;flex:none}
+.head-wa{justify-self:end}
+.wordmark{font-family:var(--display);font-size:1.05rem;letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;text-align:center}
+@media (max-width:600px){
+  .head-link .lbl{display:none}
+  .wordmark{font-size:.86rem;letter-spacing:.18em}
+}
+
+/* Hero */
+.hero{padding-block:clamp(18px,4vw,56px) clamp(56px,8vw,104px)}
+.hero-grid{display:grid;gap:clamp(28px,4.5vw,72px);align-items:center}
+.hero-media{aspect-ratio:4/5}
+.hero-tag{position:absolute;z-index:2;left:12px;bottom:12px;display:inline-flex;align-items:center;gap:10px;background:rgba(255,252,246,.94);padding:9px 14px;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.hero-tag b{font-weight:500}
+.hero-text{max-width:34rem}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,8.5vw,5.2rem);line-height:1.02;letter-spacing:.005em;margin:.35em 0 0;text-wrap:balance}
+.zari-rule{display:flex;align-items:center;gap:10px;width:170px;margin-block:22px;color:var(--gold)}
+.zari-rule::before,.zari-rule::after{content:"";flex:1;height:1px;background:currentColor}
+.zari-rule i{width:7px;height:7px;border:1px solid currentColor;transform:rotate(45deg)}
+.tagline{font-family:var(--display);font-size:clamp(1.25rem,2.6vw,1.6rem);line-height:1.35;margin:0;text-wrap:balance}
+.lead{color:var(--muted);font-weight:300;font-size:1.02rem;margin:14px 0 0;max-width:32rem}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 26px;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;border:1px solid var(--ink);transition:background .25s,color .25s,border-color .25s}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-solid{background:var(--ink);color:var(--cream)}
+.btn-solid:hover{background:var(--ink-soft);border-color:var(--ink-soft)}
+.btn-ghost{background:transparent;color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--cream)}
+@media (min-width:900px){
+  .hero-grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+  .hero-media{order:2;aspect-ratio:5/6}
+}
+
+/* Collection */
+.collection{padding-block:clamp(56px,8vw,104px);border-top:1px solid var(--line)}
+.sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;margin-bottom:26px}
+.sec-head h2,.order h2,.related h2{font-family:var(--display);font-weight:400;font-size:clamp(1.85rem,4vw,2.7rem);line-height:1.1;margin:.3em 0 0;text-wrap:balance}
+.count{color:var(--muted);font-size:.85rem;font-weight:300;font-variant-numeric:tabular-nums}
+.chips{display:flex;gap:8px;overflow-x:auto;margin:0 0 30px;padding:2px 0 6px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;cursor:pointer;background:transparent;border:1px solid var(--line);border-radius:999px;padding:10px 18px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:background .2s,color .2s,border-color .2s}
+.chip:hover{border-color:var(--gold)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 14px}
+@media (min-width:720px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 24px}}
+@media (min-width:1100px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (min-width:720px){.grid.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.card{display:flex;flex-direction:column;gap:14px;min-width:0}
+.card-img{aspect-ratio:3/4}
+.card-img img{transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.card:hover .card-img img{transform:scale(1.035)}
+.card-meta{display:flex;flex-direction:column;gap:2px;min-width:0}
+.card-weave{font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.card-name{font-family:var(--display);font-size:clamp(1rem,1.7vw,1.16rem);line-height:1.25}
+.card-price{margin-top:4px;font-size:.9rem;color:var(--gold-deep);font-weight:500;font-variant-numeric:tabular-nums}
+.empty{color:var(--muted);font-weight:300}
+
+/* How to order */
+.order{padding-block:clamp(56px,8vw,104px);background:var(--paper);border-block:1px solid var(--line)}
+.steps{display:grid;gap:30px;margin:36px 0 0;padding:0;list-style:none}
+@media (min-width:820px){.steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:48px}}
+.step{display:grid;grid-template-columns:2.4rem minmax(0,1fr);gap:14px;align-items:start}
+.step-num{font-family:var(--display);font-size:1.7rem;line-height:1;color:var(--gold)}
+.step h3{font-family:var(--display);font-weight:400;font-size:1.2rem;margin:0 0 6px;line-height:1.3}
+.step p{margin:0;color:var(--muted);font-weight:300;max-width:34ch}
+
+/* Footer */
+.foot{padding-block:48px 60px}
+.foot-inner{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 40px}
+.foot .wordmark{text-align:left;font-size:1rem}
+.foot p{margin:6px 0 0;color:var(--muted);font-size:.86rem;font-weight:300}
+.foot .num{font-variant-numeric:tabular-nums;color:var(--ink);user-select:all}
+
+/* Saree page */
+.detail{padding-block:22px 88px}
+.back{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.back:hover{color:var(--ink)}
+.detail-grid{display:grid;gap:34px}
+@media (min-width:900px){
+  .detail-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:68px;align-items:start}
+  .gallery{position:sticky;top:calc(env(safe-area-inset-top,0px) + 86px)}
+}
+.main-img{aspect-ratio:3/4;touch-action:pan-y}
+.view-label{position:absolute;z-index:2;left:12px;bottom:12px;background:rgba(255,252,246,.94);padding:7px 12px;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase}
+.thumbs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:10px}
+.thumb{cursor:pointer;background:none;border:0;padding:0;display:flex;flex-direction:column;gap:7px;color:var(--muted);min-width:0}
+.thumb-img{aspect-ratio:1/1;outline:1px solid transparent;outline-offset:2px;transition:outline-color .2s}
+.thumb:hover .thumb-img{outline-color:var(--line)}
+.thumb .t-label{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;text-align:center}
+.thumb[aria-current="true"] .thumb-img{outline-color:var(--gold-deep)}
+.thumb[aria-current="true"] .t-label{color:var(--ink)}
+.info{min-width:0}
+.info h1{font-family:var(--display);font-weight:400;font-size:clamp(2rem,4.4vw,2.9rem);line-height:1.08;margin:.35em 0 .25em;text-wrap:balance}
+.price{margin:0;font-size:1.3rem;font-weight:400;font-variant-numeric:tabular-nums}
+.desc{font-weight:300;font-size:1.03rem;line-height:1.78;max-width:60ch;margin:22px 0 0}
+.specs{display:grid;grid-template-columns:auto minmax(0,1fr);gap:13px 26px;margin:30px 0 0;padding-top:26px;border-top:1px solid var(--line);font-size:.93rem}
+.specs dt{font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding-top:4px}
+.specs dd{margin:0}
+.enquire{display:flex;flex-direction:column;gap:12px;margin-top:34px}
+.enquire .btn{width:100%}
+@media (min-width:600px){.enquire .btn{width:auto;align-self:flex-start}}
+.code-note{margin:0;font-size:.86rem;color:var(--muted);font-weight:300;max-width:46ch}
+.code-note b{font-weight:500;color:var(--ink);letter-spacing:.06em}
+.related{margin-top:clamp(64px,9vw,104px);padding-top:44px;border-top:1px solid var(--line)}
+.related h2{margin:0 0 28px}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="head-link" href="#collection" aria-label="The collection">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5"/><rect x="13.5" y="4" width="6.5" height="6.5"/><rect x="4" y="13.5" width="6.5" height="6.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5"/></svg>
+      <span class="lbl">Collection</span>
+    </a>
+    <a class="wordmark" href="#top" data-brand>Traditional Threads</a>
+    <a class="head-link head-wa" id="headWa" href="https://wa.me/" target="_blank" rel="noopener" aria-label="Message us on WhatsApp">
+      <span class="lbl">WhatsApp</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 5.5h16v11H10l-4.5 3.5v-3.5H4z" stroke-linejoin="round"/><path d="M8 10h8M8 13h5"/></svg>
+    </a>
+  </div>
+</header>
+
+<main id="home">
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <a class="imgbox hero-media" id="heroMedia" href="#peacock-kanjivaram">
+        <span class="hero-tag">Featured <b>Peacock Kanjivaram</b> →</span>
+      </a>
+      <div class="hero-text">
+        <p class="eyebrow">Handwoven sarees · Curated collection</p>
+        <h1 data-brand>Traditional Threads</h1>
+        <div class="zari-rule" aria-hidden="true"><i></i></div>
+        <p class="tagline">Heirloom weaves, chosen one at a time.</p>
+        <p class="lead">A small collection of handwoven Kanjivaram, Banarasi, Paithani, Chanderi and cotton sarees. Browse at your leisure, then message us on WhatsApp to order.</p>
+        <div class="actions">
+          <a class="btn btn-solid" href="#collection">View the collection</a>
+          <a class="btn btn-ghost" id="heroWa" href="https://wa.me/" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="collection" id="collection">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="eyebrow">Our sarees</p>
+          <h2>The Collection</h2>
+        </div>
+        <span class="count" id="count">12 sarees</span>
+      </div>
+      <div class="chips" role="group" aria-label="Filter by occasion" id="chips">
+        <button class="chip" type="button" data-filter="All" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-filter="Bridal" aria-pressed="false">Bridal</button>
+        <button class="chip" type="button" data-filter="Festive" aria-pressed="false">Festive</button>
+        <button class="chip" type="button" data-filter="Everyday" aria-pressed="false">Light &amp; Everyday</button>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="order" id="order">
+    <div class="wrap">
+      <p class="eyebrow">How to order</p>
+      <h2>Ordering is a simple conversation</h2>
+      <ol class="steps">
+        <li class="step"><span class="step-num">1</span><div><h3>Choose your saree</h3><p>Open any saree to see the drape, zari, pallu, border and weave up close.</p></div></li>
+        <li class="step"><span class="step-num">2</span><div><h3>Message us on WhatsApp</h3><p>Send the saree code. We reply with availability and can share more photos or a short video.</p></div></li>
+        <li class="step"><span class="step-num">3</span><div><h3>Confirm and receive</h3><p>We confirm the price, payment and delivery with you directly, then pack your saree with care.</p></div></li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<main id="detail" class="detail" hidden></main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div>
+      <div class="wordmark" data-brand>Traditional Threads</div>
+      <p>Handwoven sarees · Enquiries on WhatsApp</p>
+    </div>
+    <p id="footNum">© 2026 <span data-brand>Traditional Threads</span></p>
+  </div>
+</footer>
+
+<script>
+/* ---------- Settings: change these two lines ---------- */
+const CONFIG = {
+  brand: 'Traditional Threads',
+  whatsapp: '' // your number with country code, digits only, e.g. '919xxxxxxxxx'
+};
+
+/* ---------- Catalogue (sample sarees; swap in your own photos and details) ---------- */
+const LENGTH = '5.5 m saree with 0.8 m blouse piece';
+const SAREES = [
+  {id:'peacock-kanjivaram',code:'TT-01',name:'Peacock Kanjivaram',weave:'Kanjivaram Silk',occasion:'Bridal',price:24500,
+   body:'#0f4f5e',border:'#8c1d40',pallu:'#8c1d40',metal:'gold',motif:'flower',borderType:'temple',
+   fabric:'Pure mulberry silk',zari:'Gold zari',care:'Dry clean only',
+   desc:'A deep peacock-teal Kanjivaram, handwoven in pure mulberry silk. Small gold flowers are scattered evenly across the body, and the contrast magenta border carries a classic temple design. The pallu is rich with zari bands that catch the light as you move. A graceful, timeless choice for weddings and family celebrations.'},
+  {id:'arakku-kanjivaram',code:'TT-02',name:'Arakku Red Kanjivaram',weave:'Kanjivaram Silk',occasion:'Bridal',price:28000,
+   body:'#7b1622',border:'#1f4a35',pallu:'#1f4a35',metal:'gold',motif:'checks',borderType:'rudraksh',
+   fabric:'Pure mulberry silk',zari:'Gold zari',care:'Dry clean only',
+   desc:'Arakku, the deep lac red of South Indian weddings, paired with a bottle-green border. The body is woven in fine gold checks, known as kattam, with a small zari dot in every other square. The broad pallu is heavy with gold. An heirloom piece to wear on the big day and keep for the next generation.'},
+  {id:'ivory-banarasi',code:'TT-03',name:'Ivory Banarasi',weave:'Banarasi Silk',occasion:'Bridal',price:19800,
+   body:'#eee1c4',border:'#e2cfa2',pallu:'#e2cfa2',metal:'gold',motif:'jaal',borderType:'creeper',
+   fabric:'Pure katan silk',zari:'Gold zari',care:'Dry clean only',
+   desc:'Soft ivory Banarasi silk covered in a delicate gold jaal, a lattice of fine lines with small flowers where they meet. The border is a flowing creeper of leaves in zari. Light, lustrous and quietly regal, it suits a reception, an engagement or a festive evening.'},
+  {id:'emerald-banarasi',code:'TT-04',name:'Emerald Banarasi',weave:'Banarasi Silk',occasion:'Festive',price:21500,
+   body:'#175a3c',border:'#0e3d29',pallu:'#0e3d29',metal:'gold',motif:'mango',borderType:'chevron',
+   fabric:'Pure katan silk',zari:'Gold zari',care:'Dry clean only',
+   desc:'A rich emerald Banarasi with gold mango motifs, called kairi, woven across the body. The border has a crisp zig-zag pattern in zari, and the pallu is finished with dense gold bands. Deep, jewel-toned and festive, it looks especially beautiful in evening light.'},
+  {id:'rani-pink-banarasi',code:'TT-05',name:'Rani Pink Banarasi',weave:'Banarasi Silk',occasion:'Festive',price:16900,
+   body:'#b3245f',border:'#6e1239',pallu:'#6e1239',metal:'silver',motif:'jaal',borderType:'rudraksh',
+   fabric:'Silk',zari:'Silver zari',care:'Dry clean only',
+   desc:'Bright rani pink Banarasi silk with a fine silver zari jaal. The silver gives it a cool, modern shine against the warm pink, and a darker berry border frames the body neatly. Perfect for sangeet nights, festivals and celebrations where you want to stand out.'},
+  {id:'midnight-soft-silk',code:'TT-06',name:'Midnight Navy Soft Silk',weave:'Soft Silk',occasion:'Festive',price:8400,
+   body:'#1c2a4f',border:'#7a1f35',pallu:'#7a1f35',metal:'gold',motif:'stripes',borderType:'temple',
+   fabric:'Soft silk',zari:'Gold zari',care:'Dry clean only',
+   desc:'A midnight-navy soft silk with fine vertical gold stripes running through the body. Lighter than a traditional Kanjivaram, it drapes beautifully and is easy to wear for long hours. The wine border and zari pallu add a classic finish. Elegant for festivals and family events.'},
+  {id:'wine-soft-silk',code:'TT-07',name:'Wine & Mustard Soft Silk',weave:'Soft Silk',occasion:'Festive',price:8900,
+   body:'#5c1a34',border:'#c98b26',pallu:'#c98b26',metal:'gold',motif:'diamond',borderType:'chevron',
+   fabric:'Soft silk',zari:'Gold zari',care:'Dry clean only',
+   desc:'Deep wine soft silk with small gold diamond buttas, set against a warm mustard border. The contrast is classic and very flattering. Soft to the touch and light to carry, it moves gracefully from a morning function to an evening dinner.'},
+  {id:'coral-mysore-silk',code:'TT-08',name:'Coral Mysore Silk',weave:'Mysore Crepe Silk',occasion:'Festive',price:11500,
+   body:'#d4664c',border:'#c4573e',pallu:'#c4573e',metal:'gold',motif:'plain',borderType:'simple',
+   fabric:'Pure crepe silk',zari:'Gold zari',care:'Dry clean only',
+   desc:'A smooth coral Mysore silk with a fluid, almost liquid drape. The body is left plain so the colour and natural lustre can speak, edged with a slim gold zari border. Light, refined and very easy to wear, it is quiet luxury for any occasion.'},
+  {id:'royal-purple-paithani',code:'TT-09',name:'Royal Purple Paithani',weave:'Paithani Silk',occasion:'Bridal',price:32000,
+   body:'#4a2669',border:'#2c6a4a',pallu:'#2c6a4a',metal:'gold',motif:'diamond',borderType:'creeper',
+   fabric:'Pure silk',zari:'Gold zari',care:'Dry clean only',
+   desc:'A royal purple Paithani with small gold buttas and a contrast green border woven with a vine of leaves. The pallu is the showpiece, filled with bold zari bands in the traditional style. Handwoven over many weeks, it is a true heirloom for brides and grand occasions.'},
+  {id:'mango-chanderi',code:'TT-10',name:'Mango Yellow Chanderi',weave:'Chanderi Silk-Cotton',occasion:'Everyday',price:6800,
+   body:'#e2b23d',border:'#7c2a22',pallu:'#7c2a22',metal:'gold',motif:'dots',borderType:'simple',
+   fabric:'Silk-cotton blend',zari:'Gold zari',care:'Gentle dry clean',
+   desc:'A sunny mango-yellow Chanderi, light and sheer with a soft natural sheen. Tiny gold buttis are sprinkled across the body, and a slim maroon border finishes the edges. Airy and easy to drape, it is ideal for day functions, poojas and summer gatherings.'},
+  {id:'blush-organza',code:'TT-11',name:'Blush Pink Organza',weave:'Organza',occasion:'Everyday',price:7200,
+   body:'#e9bab5',border:'#d79f99',pallu:'#d79f99',metal:'gold',motif:'flower',borderType:'simple',
+   fabric:'Pure organza silk',zari:'Gold zari',care:'Dry clean only',
+   desc:'A soft blush-pink organza, crisp, sheer and feather-light. Small gold flowers are woven across the body, with a fine zari edge that keeps the look delicate. It brings an easy, modern elegance to day weddings, baby showers and garden parties.'},
+  {id:'chettinad-cotton',code:'TT-12',name:'Mustard Chettinad Cotton',weave:'Chettinad Cotton',occasion:'Everyday',price:2400,
+   body:'#c88a1d',border:'#2b2420',pallu:'#2b2420',metal:'thread',thread:'#f0e2c0',motif:'checks',borderType:'rudraksh',
+   fabric:'Pure cotton',zari:'Cotton thread work',care:'Gentle hand wash, dry in shade',
+   desc:'A classic Chettinad cotton in warm mustard, woven with neat cream checks and a bold black border. The cotton is breathable and holds its shape well through the day. Simple, smart and comfortable, it is made for work, temple visits and everyday wear.'}
+];
+const VIEWS = [
+  {key:'drape',label:'Drape',long:'Full drape'},
+  {key:'zari',label:'Zari',long:'Zari motif'},
+  {key:'pallu',label:'Pallu',long:'Pallu'},
+  {key:'border',label:'Border',long:'Border'},
+  {key:'weave',label:'Weave',long:'Weave close-up'}
+];
+
+/* ---------- Helpers ---------- */
+const $ = s => document.querySelector(s);
+const fmt = n => '₹' + n.toLocaleString('en-IN');
+function wa(s){
+  const msg = s
+    ? `Hello ${CONFIG.brand}, I'd like to know more about the ${s.name} (code ${s.code}). Is it available?`
+    : `Hello ${CONFIG.brand}, I'd like to see your saree collection.`;
+  return `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+}
+const WA_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 5.5h16v11H10l-4.5 3.5v-3.5H4z" stroke-linejoin="round"/></svg>';
+
+/* ---------- Placeholder saree photography, painted on canvas ----------
+   Each saree is drawn from its colours, zari and motif so the layout can be judged
+   before real photos exist. Replace with real images later. */
+const W = 720, H = 960;
+const METALS = {
+  gold:['#7a5a22','#d9b765','#a8812f','#f3e1a6','#8f6a28','#e2c27a'],
+  silver:['#6c7077','#d7dbe0','#979da5','#f4f6f8','#7b8189','#cdd1d6'],
+};
+function hash(str){let h=2166136261;for(const c of str){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function rgb(h){const n=parseInt(h.slice(1),16);return[n>>16&255,n>>8&255,n&255]}
+function mix(h,t,a){const x=rgb(h),y=rgb(t);return`rgb(${x.map((v,i)=>Math.round(v+(y[i]-v)*a)).join(',')})`}
+function metal(ctx,s,w,h){
+  if(s.metal==='thread') return s.thread;
+  const c=METALS[s.metal], g=ctx.createLinearGradient(0,0,w*.9,h*.6), n=c.length*3;
+  for(let i=0;i<n;i++) g.addColorStop(i/(n-1),c[i%c.length]);
+  return g;
+}
+let NOISE;
+function noise(){
+  if(NOISE) return NOISE;
+  const c=document.createElement('canvas');c.width=c.height=128;
+  const x=c.getContext('2d'),d=x.createImageData(128,128);
+  for(let i=0;i<d.data.length;i+=4){const v=96+Math.random()*64|0;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=255}
+  x.putImageData(d,0,0);return NOISE=c;
+}
+function motif(ctx,type,x,y,s,fill,bg){
+  ctx.fillStyle=fill;
+  if(type==='flower'){
+    for(let i=0;i<6;i++){const a=i*Math.PI/3;ctx.beginPath();ctx.ellipse(x+Math.cos(a)*s*.26,y+Math.sin(a)*s*.26,s*.19,s*.1,a,0,Math.PI*2);ctx.fill()}
+    ctx.fillStyle=bg;ctx.beginPath();ctx.arc(x,y,s*.11,0,7);ctx.fill();
+    ctx.fillStyle=fill;ctx.beginPath();ctx.arc(x,y,s*.055,0,7);ctx.fill();
+  } else if(type==='diamond'){
+    ctx.beginPath();ctx.moveTo(x,y-s*.5);ctx.lineTo(x+s*.32,y);ctx.lineTo(x,y+s*.5);ctx.lineTo(x-s*.32,y);ctx.closePath();ctx.fill();
+    ctx.fillStyle=bg;ctx.beginPath();ctx.moveTo(x,y-s*.3);ctx.lineTo(x+s*.18,y);ctx.lineTo(x,y+s*.3);ctx.lineTo(x-s*.18,y);ctx.closePath();ctx.fill();
+    ctx.fillStyle=fill;ctx.beginPath();ctx.arc(x,y,s*.07,0,7);ctx.fill();
+  } else if(type==='mango'){
+    ctx.beginPath();ctx.moveTo(x,y+s*.45);
+    ctx.bezierCurveTo(x-s*.44,y+s*.44,x-s*.4,y-s*.24,x,y-s*.3);
+    ctx.bezierCurveTo(x+s*.2,y-s*.33,x+s*.26,y-s*.52,x+s*.1,y-s*.56);
+    ctx.bezierCurveTo(x+s*.36,y-s*.5,x+s*.44,y-s*.08,x+s*.32,y+s*.16);
+    ctx.bezierCurveTo(x+s*.24,y+s*.38,x+s*.12,y+s*.45,x,y+s*.45);
+    ctx.closePath();ctx.fill();
+    ctx.fillStyle=bg;ctx.beginPath();ctx.arc(x-s*.02,y+s*.13,s*.14,0,7);ctx.fill();
+    ctx.fillStyle=fill;ctx.beginPath();ctx.arc(x-s*.02,y+s*.13,s*.06,0,7);ctx.fill();
+  } else {
+    ctx.beginPath();ctx.arc(x,y,s*.5,0,7);ctx.fill();
+  }
+}
+function body(ctx,x0,y0,w,h,s,sp,fill){
+  ctx.save();ctx.beginPath();ctx.rect(x0,y0,w,h);ctx.clip();
+  ctx.fillStyle=s.body;ctx.fillRect(x0,y0,w,h);
+  const m=s.motif;
+  if(m==='checks'){
+    ctx.fillStyle=fill;const lw=Math.max(1.5,sp*.045);
+    for(let x=x0;x<x0+w;x+=sp){ctx.fillRect(x,y0,lw,h);ctx.fillRect(x+lw*2.4,y0,lw*.6,h)}
+    for(let y=y0;y<y0+h;y+=sp){ctx.fillRect(x0,y,w,lw);ctx.fillRect(x0,y+lw*2.4,w,lw*.6)}
+    for(let j=0;j*sp<h+sp;j++)for(let i=0;i*sp<w+sp;i++) if((i+j)%2===0) motif(ctx,'dot',x0+i*sp+sp/2+lw,y0+j*sp+sp/2+lw,sp*.16,fill,s.body);
+  } else if(m==='stripes'){
+    ctx.fillStyle=fill;const lw=Math.max(1.2,sp*.035);
+    for(let x=x0+sp*.3;x<x0+w;x+=sp*.5){ctx.fillRect(x,y0,lw,h);ctx.fillRect(x+lw*3,y0,lw*.6,h)}
+  } else if(m==='jaal'){
+    ctx.strokeStyle=fill;ctx.lineWidth=Math.max(1.2,sp*.028);ctx.beginPath();
+    for(let k=-Math.ceil(h/sp)*sp;k<w+sp;k+=sp){ctx.moveTo(x0+k,y0);ctx.lineTo(x0+k+h,y0+h)}
+    for(let k=0;k<w+h+sp;k+=sp){ctx.moveTo(x0+k,y0);ctx.lineTo(x0+k-h,y0+h)}
+    ctx.stroke();
+    for(let j=0;j*sp/2<h+sp;j++)for(let i=0;i*sp/2<w+sp;i++) if((i+j)%2===0) motif(ctx,'flower',x0+i*sp/2,y0+j*sp/2,sp*.3,fill,s.body);
+  } else if(m!=='plain'){
+    const type=m==='dots'?'dot':m, size=m==='dots'?sp*.11:sp*.42;
+    let row=0;
+    for(let y=y0+sp*.45;y<y0+h+sp;y+=sp*.9,row++)
+      for(let x=x0+(row%2?sp:sp/2);x<x0+w+sp;x+=sp) motif(ctx,type,x,y,size,fill,s.body);
+  }
+  ctx.restore();
+}
+function border(ctx,L,B,s,fill,type){
+  ctx.fillStyle=s.border;ctx.fillRect(0,0,L,B);
+  ctx.fillStyle=fill;
+  ctx.fillRect(0,0,L,B*.035);ctx.fillRect(0,B*.075,L,B*.02);
+  ctx.fillRect(0,B*.86,L,B*.08);ctx.fillRect(0,B*.965,L,B*.035);
+  const dots=(y,gap,r)=>{for(let x=gap/2;x<L;x+=gap){ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.fill()}};
+  if(type==='temple'){
+    const tw=B*.34;
+    ctx.beginPath();for(let x=0;x<L+tw;x+=tw){ctx.moveTo(x,B*.66);ctx.lineTo(x+tw/2,B*.17);ctx.lineTo(x+tw,B*.66);ctx.closePath()}ctx.fill();
+    ctx.fillStyle=s.border;ctx.beginPath();for(let x=0;x<L+tw;x+=tw){ctx.moveTo(x+tw*.3,B*.63);ctx.lineTo(x+tw/2,B*.38);ctx.lineTo(x+tw*.7,B*.63);ctx.closePath()}ctx.fill();
+    ctx.fillStyle=fill;ctx.fillRect(0,B*.64,L,B*.05);dots(B*.77,tw/2,B*.03);
+  } else if(type==='rudraksh'){
+    ctx.fillRect(0,B*.2,L,B*.035);
+    const g=B*.26;dots(B*.46,g,B*.09);
+    ctx.fillStyle=s.border;dots(B*.46,g,B*.04);
+    ctx.fillStyle=fill;ctx.fillRect(0,B*.65,L,B*.03);dots(B*.76,g/2,B*.025);
+  } else if(type==='creeper'){
+    const P=B*.9,A=B*.12,cy=B*.42;
+    ctx.strokeStyle=fill;ctx.lineWidth=B*.03;ctx.beginPath();
+    for(let x=0;x<=L;x+=4){const y=cy+Math.sin(x/P*6.283)*A;x===0?ctx.moveTo(x,y):ctx.lineTo(x,y)}ctx.stroke();
+    for(let k=0;P/4+k*P/2<L;k++){
+      const x=P/4+k*P/2, d=k%2?1:-1, y=cy+d*A;
+      ctx.beginPath();ctx.ellipse(x+B*.05,y-d*B*.11,B*.075,B*.032,d*.7,0,7);ctx.fill();
+      ctx.beginPath();ctx.arc(x,y+d*B*.1,B*.03,0,7);ctx.fill();
+    }
+    ctx.fillRect(0,B*.68,L,B*.03);dots(B*.77,B*.16,B*.022);
+  } else if(type==='chevron'){
+    const p=B*.36;ctx.strokeStyle=fill;ctx.lineWidth=B*.05;ctx.lineJoin='miter';ctx.beginPath();
+    for(let x=0,i=0;x<=L+p;x+=p/2,i++){const y=i%2?B*.24:B*.6;i?ctx.lineTo(x,y):ctx.moveTo(x,y)}ctx.stroke();
+    ctx.fillRect(0,B*.7,L,B*.035);dots(B*.79,p/2,B*.024);
+  } else {
+    ctx.fillRect(0,B*.32,L,B*.03);
+  }
+}
+function pallu(ctx,L,D,s,fill,u){
+  ctx.fillStyle=s.pallu;ctx.fillRect(0,0,L,D);
+  const big=['flower','diamond','mango'].includes(s.motif)?s.motif:'mango';
+  const small=['flower','diamond','mango'].includes(s.motif)?s.motif:'diamond';
+  const seq=s.motif==='plain'?['l','Z','l','l','Z','l']:['Z','m','l','M','l','b','Z','m','l','M'];
+  let y=u*.06,i=0;
+  while(y<D){
+    const k=seq[i++%seq.length];
+    if(k==='Z'){ctx.fillStyle=fill;ctx.fillRect(0,y,L,u*.14);y+=u*.19}
+    else if(k==='l'){ctx.fillStyle=fill;ctx.fillRect(0,y,L,u*.018);ctx.fillRect(0,y+u*.045,L,u*.018);y+=u*.11}
+    else if(k==='m'){const z=u*.16;for(let x=z*.8;x<L;x+=z*1.4)motif(ctx,small,x,y+z*.6,z,fill,s.pallu);y+=z*1.3}
+    else if(k==='M'){const z=u*.34;for(let x=z*.7;x<L;x+=z*1.2)motif(ctx,big,x,y+z*.6,z,fill,s.pallu);y+=z*1.25}
+    else {ctx.fillStyle=s.border;ctx.fillRect(0,y,L,u*.2);ctx.fillStyle=fill;for(let x=u*.1;x<L;x+=u*.14){ctx.beginPath();ctx.arc(x,y+u*.1,u*.025,0,7);ctx.fill()}y+=u*.26}
+  }
+}
+function weave(ctx,s,fill){
+  const c=W/30, hi=mix(s.body,'#ffffff',.1), lo=mix(s.body,'#000000',.2), bhi=mix(s.border,'#ffffff',.1), blo=mix(s.border,'#000000',.2);
+  for(let y=0,j=0;y<H;y+=c,j++)for(let x=0,i=0;x<W;x+=c,i++){
+    const over=(i+j)%2===0, zone=y<H*.56?'b':y<H*.78?'z':'r';
+    ctx.fillStyle=zone==='z'?fill:zone==='b'?(over?hi:lo):(over?bhi:blo);
+    ctx.fillRect(x,y,c+1,c+1);
+    ctx.fillStyle='rgba(255,255,255,.14)';
+    over?ctx.fillRect(x+c*.12,y+c*.36,c*.76,c*.1):ctx.fillRect(x+c*.36,y+c*.12,c*.1,c*.76);
+    ctx.fillStyle='rgba(0,0,0,.2)';
+    over?ctx.fillRect(x,y+c*.86,c,c*.14):ctx.fillRect(x+c*.86,y,c*.14,c);
+  }
+}
+function folds(ctx,r,str){
+  const g=ctx.createLinearGradient(0,0,W,0),p=r()*6.28,f1=2.2+r()*1.6,f2=5+r()*3;
+  for(let i=0;i<=60;i++){
+    const t=i/60,v=Math.sin(t*6.283*f1+p)*.65+Math.sin(t*6.283*f2+p*1.7)*.35;
+    g.addColorStop(t,v>0?`rgba(255,246,228,${(v*str*.5).toFixed(3)})`:`rgba(18,8,2,${(-v*str).toFixed(3)})`);
+  }
+  ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+}
+function finish(ctx,r,fold,sheen){
+  ctx.save();
+  ctx.lineWidth=1;
+  ctx.globalAlpha=.07;ctx.strokeStyle='#000';ctx.beginPath();for(let y=.5;y<H;y+=3){ctx.moveTo(0,y);ctx.lineTo(W,y)}ctx.stroke();
+  ctx.globalAlpha=.05;ctx.strokeStyle='#fff';ctx.beginPath();for(let x=.5;x<W;x+=3){ctx.moveTo(x,0);ctx.lineTo(x,H)}ctx.stroke();
+  ctx.globalAlpha=.35;ctx.globalCompositeOperation='soft-light';ctx.fillStyle=ctx.createPattern(noise(),'repeat');ctx.fillRect(0,0,W,H);
+  ctx.globalCompositeOperation='source-over';ctx.globalAlpha=1;
+  if(fold) folds(ctx,r,fold);
+  const g=ctx.createRadialGradient(W*.25,H*.12,0,W*.25,H*.12,W*1.15);
+  g.addColorStop(0,`rgba(255,250,235,${sheen})`);g.addColorStop(1,'rgba(255,250,235,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  const v=ctx.createLinearGradient(0,0,0,H);
+  v.addColorStop(0,'rgba(20,10,0,0)');v.addColorStop(.72,'rgba(20,10,0,0)');v.addColorStop(1,'rgba(20,10,0,.2)');
+  ctx.fillStyle=v;ctx.fillRect(0,0,W,H);
+  ctx.restore();
+}
+function paint(s,view){
+  const cv=document.createElement('canvas');cv.width=W;cv.height=H;
+  const ctx=cv.getContext('2d'),r=rng(hash(s.id+view)),fill=metal(ctx,s,W,H);
+  if(view==='drape'){
+    const simple=s.borderType==='simple', bh=H*(simple?.075:.13), th=bh*.62, px=W*.6, bw=bh*(simple?1:.78);
+    body(ctx,0,0,W,H,s,W*.12,fill);
+    ctx.save();ctx.translate(px+bw,H-bh);ctx.rotate(-Math.PI/2);pallu(ctx,H-bh-th,W-px-bw,s,metal(ctx,s,H,W),W*.5);ctx.restore();
+    ctx.save();ctx.translate(px,H-bh);ctx.rotate(-Math.PI/2);border(ctx,H-bh-th,bw,s,metal(ctx,s,H,W),s.borderType);ctx.restore();
+    ctx.save();ctx.translate(W,th);ctx.rotate(Math.PI);border(ctx,W,th,s,fill,s.borderType);ctx.restore();
+    ctx.save();ctx.translate(0,H-bh);border(ctx,W,bh,s,fill,s.borderType);ctx.restore();
+    finish(ctx,r,.55,.16);
+  } else if(view==='zari'){
+    if(s.motif==='plain'){body(ctx,0,0,W,H*.5,s,W,fill);ctx.save();ctx.translate(0,H*.5);border(ctx,W,H*.5,s,fill,'temple');ctx.restore()}
+    else body(ctx,0,0,W,H,s,W*.46,fill);
+    finish(ctx,r,.18,.3);
+  } else if(view==='pallu'){
+    pallu(ctx,W,H,s,fill,W*.62);finish(ctx,r,.3,.22);
+  } else if(view==='border'){
+    body(ctx,0,0,W,H*.42,s,W*.26,fill);
+    ctx.save();ctx.translate(0,H*.42);border(ctx,W,H*.58,s,fill,s.borderType);ctx.restore();
+    finish(ctx,r,.22,.2);
+  } else {
+    weave(ctx,s,fill);finish(ctx,r,.12,.18);
+  }
+  return cv.toDataURL('image/jpeg',.86);
+}
+const cache=new Map();
+function photo(s,view){const k=s.id+':'+view;if(!cache.has(k))cache.set(k,paint(s,view));return cache.get(k)}
+const queue=[];let pumping=false;
+function pump(){
+  const t=performance.now();
+  while(queue.length&&performance.now()-t<28) queue.shift()();
+  if(queue.length) setTimeout(pump,0); else pumping=false;
+}
+function fillImg(el,s,view,alt,urgent){
+  el.style.backgroundColor=s.body;
+  const put=()=>{
+    if(!el.isConnected) return;
+    const old=el.querySelector('img');
+    const im=new Image();im.alt=alt;im.src=photo(s,view);
+    old?old.replaceWith(im):el.appendChild(im);
+  };
+  if(cache.has(s.id+':'+view)){put();return}
+  urgent?queue.unshift(put):queue.push(put);
+  if(!pumping){pumping=true;setTimeout(pump,0)}
+}
+
+/* ---------- Catalogue grid ---------- */
+function card(s){
+  return `<a class="card" href="#${s.id}">
+    <span class="imgbox card-img" data-id="${s.id}"></span>
+    <span class="card-meta">
+      <span class="card-weave">${s.weave}</span>
+      <span class="card-name">${s.name}</span>
+      <span class="card-price">${fmt(s.price)}</span>
+    </span></a>`;
+}
+function hydrate(root){
+  root.querySelectorAll('.card-img').forEach(el=>{
+    const s=SAREES.find(x=>x.id===el.dataset.id);
+    fillImg(el,s,'drape',`${s.name}, full drape`);
+  });
+}
+let filter='All';
+function renderGrid(){
+  const list=filter==='All'?SAREES:SAREES.filter(s=>s.occasion===filter);
+  const grid=$('#grid');
+  grid.innerHTML=list.map(card).join('');
+  $('#count').textContent=`${list.length} ${list.length===1?'saree':'sarees'}`;
+  hydrate(grid);
+}
+$('#chips').addEventListener('click',e=>{
+  const b=e.target.closest('.chip');if(!b) return;
+  filter=b.dataset.filter;
+  document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',String(c===b)));
+  renderGrid();
+});
+
+/* ---------- Saree page ---------- */
+function renderDetail(s){
+  const related=[...SAREES.filter(x=>x.id!==s.id&&x.occasion===s.occasion),...SAREES.filter(x=>x.occasion!==s.occasion)].slice(0,4);
+  const d=$('#detail');
+  d.innerHTML=`<div class="wrap">
+    <a class="back" href="#collection">← The Collection</a>
+    <div class="detail-grid">
+      <div class="gallery">
+        <div class="imgbox main-img" id="mainImg"><span class="view-label" id="viewLabel">Full drape</span></div>
+        <div class="thumbs" role="group" aria-label="Saree views">
+          ${VIEWS.map((v,i)=>`<button class="thumb" type="button" data-view="${v.key}" aria-current="${i===0}" aria-label="Show ${v.long}"><span class="imgbox thumb-img"></span><span class="t-label">${v.label}</span></button>`).join('')}
+        </div>
+      </div>
+      <div class="info">
+        <p class="eyebrow">${s.weave} · ${s.occasion==='Everyday'?'Light & Everyday':s.occasion}</p>
+        <h1>${s.name}</h1>
+        <p class="price">${fmt(s.price)}</p>
+        <p class="desc">${s.desc}</p>
+        <dl class="specs">
+          <dt>Fabric</dt><dd>${s.fabric}</dd>
+          <dt>Zari</dt><dd>${s.zari}</dd>
+          <dt>Length</dt><dd>${LENGTH}</dd>
+          <dt>Care</dt><dd>${s.care}</dd>
+          <dt>Code</dt><dd>${s.code}</dd>
+        </dl>
+        <div class="enquire">
+          <a class="btn btn-solid" href="${wa(s)}" target="_blank" rel="noopener">${WA_ICON} Enquire on WhatsApp</a>
+          <p class="code-note">Saree code <b>${s.code}</b>. Mention it in your message and we will reply with availability and more photos.</p>
+        </div>
+      </div>
+    </div>
+    <section class="related">
+      <h2>You may also like</h2>
+      <div class="grid grid-4">${related.map(card).join('')}</div>
+    </section>
+  </div>`;
+
+  const main=$('#mainImg'), label=$('#viewLabel'), thumbs=[...d.querySelectorAll('.thumb')];
+  let idx=0;
+  const show=i=>{
+    idx=(i+VIEWS.length)%VIEWS.length;
+    const v=VIEWS[idx];
+    thumbs.forEach((t,k)=>t.setAttribute('aria-current',String(k===idx)));
+    label.textContent=v.long;
+    fillImg(main,s,v.key,`${s.name}, ${v.long.toLowerCase()}`,true);
+  };
+  fillImg(main,s,'drape',`${s.name}, full drape`,true);
+  thumbs.forEach((t,k)=>{
+    fillImg(t.querySelector('.thumb-img'),s,VIEWS[k].key,'',k===0);
+    t.addEventListener('click',()=>show(k));
+  });
+  let x0=null;
+  main.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});
+  main.addEventListener('touchend',e=>{
+    if(x0===null) return;
+    const dx=e.changedTouches[0].clientX-x0;x0=null;
+    if(Math.abs(dx)>40) show(idx+(dx<0?1:-1));
+  });
+  hydrate(d.querySelector('.related'));
+}
+
+/* ---------- Routing ---------- */
+function route(){
+  const h=location.hash.slice(1);
+  const s=SAREES.find(x=>x.id===h);
+  if(s){
+    $('#home').hidden=true;$('#detail').hidden=false;
+    renderDetail(s);
+    document.title=`${s.name} · ${CONFIG.brand}`;
+    window.scrollTo({top:0,behavior:'instant'});
+  } else {
+    const wasDetail=!$('#detail').hidden;
+    $('#detail').hidden=true;$('#home').hidden=false;$('#detail').innerHTML='';
+    document.title=CONFIG.brand;
+    if(wasDetail) hydrate($('#grid'));
+    const el=h&&document.getElementById(h);
+    if(el) requestAnimationFrame(()=>el.scrollIntoView({behavior:wasDetail?'instant':'smooth'}));
+    else if(wasDetail) window.scrollTo({top:0,behavior:'instant'});
+  }
+}
+
+/* ---------- Start ---------- */
+document.querySelectorAll('[data-brand]').forEach(el=>el.textContent=CONFIG.brand);
+['#headWa','#heroWa'].forEach(sel=>$(sel).href=wa());
+if(CONFIG.whatsapp){
+  const n=CONFIG.whatsapp;
+  $('#footNum').innerHTML=`WhatsApp <span class="num">+${n.slice(0,2)} ${n.slice(2,7)} ${n.slice(7)}</span>`;
+}
+fillImg($('#heroMedia'),SAREES[0],'drape','Peacock Kanjivaram saree, full drape',true);
+renderGrid();
+window.addEventListener('hashchange',route);
+route();
+</script>
+</body>
+</html>
