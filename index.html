@@ -127,10 +127,12 @@ section,[id]{scroll-margin-top:84px}
 .back:hover{color:var(--ink)}
 .detail-grid{display:grid;gap:34px}
 @media (min-width:900px){
-  .detail-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:68px;align-items:start}
+  .detail-grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.1fr);gap:68px;align-items:start}
   .gallery{position:sticky;top:calc(env(safe-area-inset-top,0px) + 86px)}
 }
 .main-img{aspect-ratio:3/4;touch-action:pan-y}
+.main-img.is-model{aspect-ratio:2/3}
+.imgbox img.real{object-position:center 12%}
 .view-label{position:absolute;z-index:2;left:12px;bottom:12px;background:rgba(255,252,246,.94);padding:7px 12px;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase}
 .thumbs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:10px}
 .thumb{cursor:pointer;background:none;border:0;padding:0;display:flex;flex-direction:column;gap:7px;color:var(--muted);min-width:0}
@@ -249,7 +251,12 @@ const CONFIG = {
   whatsapp: '' // your number with country code, digits only, e.g. '919xxxxxxxxx'
 };
 
-/* ---------- Catalogue (sample sarees; swap in your own photos and details) ---------- */
+/* ---------- Catalogue (sample sarees; swap in your own photos and details) ----------
+   Real photos: put them in images/sarees/<code>/ and list them on the saree, e.g.
+     photos:{model:'images/sarees/TT-01/model.jpg', zari:'images/sarees/TT-01/zari.jpg',
+             pallu:'...', border:'...', weave:'...'}
+   A "model" photo becomes the main image on the saree page and the card in the collection.
+   Any view without a photo keeps the drawn placeholder. */
 const LENGTH = '5.5 m saree with 0.8 m blouse piece';
 const SAREES = [
   {id:'peacock-kanjivaram',code:'TT-01',name:'Peacock Kanjivaram',weave:'Kanjivaram Silk',occasion:'Bridal',price:24500,
@@ -507,7 +514,12 @@ function paint(s,view){
   return cv.toDataURL('image/jpeg',.86);
 }
 const cache=new Map();
+const realPhoto=(s,view)=>s.photos&&s.photos[view];
 function photo(s,view){const k=s.id+':'+view;if(!cache.has(k))cache.set(k,paint(s,view));return cache.get(k)}
+/* Views for one saree: when it has a model photo, "On model" leads and replaces the drape */
+const MODEL_VIEW={key:'model',label:'Model',long:'On model · AI-styled'};
+function viewsFor(s){return realPhoto(s,'model')?[MODEL_VIEW,...VIEWS.filter(v=>v.key!=='drape')]:VIEWS}
+const coverView=s=>realPhoto(s,'model')?'model':'drape';
 const queue=[];let pumping=false;
 function pump(){
   const t=performance.now();
@@ -516,13 +528,15 @@ function pump(){
 }
 function fillImg(el,s,view,alt,urgent){
   el.style.backgroundColor=s.body;
+  const real=realPhoto(s,view);
   const put=()=>{
     if(!el.isConnected) return;
     const old=el.querySelector('img');
-    const im=new Image();im.alt=alt;im.src=photo(s,view);
+    const im=new Image();im.alt=alt;im.decoding='async';
+    if(real){im.src=real;im.className='real'}else im.src=photo(s,view);
     old?old.replaceWith(im):el.appendChild(im);
   };
-  if(cache.has(s.id+':'+view)){put();return}
+  if(real||cache.has(s.id+':'+view)){put();return}
   urgent?queue.unshift(put):queue.push(put);
   if(!pumping){pumping=true;setTimeout(pump,0)}
 }
@@ -540,7 +554,8 @@ function card(s){
 function hydrate(root){
   root.querySelectorAll('.card-img').forEach(el=>{
     const s=SAREES.find(x=>x.id===el.dataset.id);
-    fillImg(el,s,'drape',`${s.name}, full drape`);
+    const v=coverView(s);
+    fillImg(el,s,v,v==='model'?`Model wearing the ${s.name}`:`${s.name}, full drape`);
   });
 }
 let filter='All';
@@ -561,14 +576,14 @@ $('#chips').addEventListener('click',e=>{
 /* ---------- Saree page ---------- */
 function renderDetail(s){
   const related=[...SAREES.filter(x=>x.id!==s.id&&x.occasion===s.occasion),...SAREES.filter(x=>x.occasion!==s.occasion)].slice(0,4);
-  const d=$('#detail');
+  const d=$('#detail'), VIEWS_S=viewsFor(s), hasModel=VIEWS_S[0].key==='model';
   d.innerHTML=`<div class="wrap">
     <a class="back" href="#collection">← The Collection</a>
     <div class="detail-grid">
       <div class="gallery">
-        <div class="imgbox main-img" id="mainImg"><span class="view-label" id="viewLabel">Full drape</span></div>
+        <div class="imgbox main-img${hasModel?' is-model':''}" id="mainImg"><span class="view-label" id="viewLabel">${VIEWS_S[0].long}</span></div>
         <div class="thumbs" role="group" aria-label="Saree views">
-          ${VIEWS.map((v,i)=>`<button class="thumb" type="button" data-view="${v.key}" aria-current="${i===0}" aria-label="Show ${v.long}"><span class="imgbox thumb-img"></span><span class="t-label">${v.label}</span></button>`).join('')}
+          ${VIEWS_S.map((v,i)=>`<button class="thumb" type="button" data-view="${v.key}" aria-current="${i===0}" aria-label="Show ${v.long}"><span class="imgbox thumb-img"></span><span class="t-label">${v.label}</span></button>`).join('')}
         </div>
       </div>
       <div class="info">
@@ -598,15 +613,15 @@ function renderDetail(s){
   const main=$('#mainImg'), label=$('#viewLabel'), thumbs=[...d.querySelectorAll('.thumb')];
   let idx=0;
   const show=i=>{
-    idx=(i+VIEWS.length)%VIEWS.length;
-    const v=VIEWS[idx];
+    idx=(i+VIEWS_S.length)%VIEWS_S.length;
+    const v=VIEWS_S[idx];
     thumbs.forEach((t,k)=>t.setAttribute('aria-current',String(k===idx)));
     label.textContent=v.long;
     fillImg(main,s,v.key,`${s.name}, ${v.long.toLowerCase()}`,true);
   };
-  fillImg(main,s,'drape',`${s.name}, full drape`,true);
+  fillImg(main,s,VIEWS_S[0].key,hasModel?`Model wearing the ${s.name}`:`${s.name}, full drape`,true);
   thumbs.forEach((t,k)=>{
-    fillImg(t.querySelector('.thumb-img'),s,VIEWS[k].key,'',k===0);
+    fillImg(t.querySelector('.thumb-img'),s,VIEWS_S[k].key,'',k===0);
     t.addEventListener('click',()=>show(k));
   });
   let x0=null;
