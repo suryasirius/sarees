@@ -58,7 +58,8 @@ section,[id]{scroll-margin-top:84px}
 /* Hero */
 .hero{padding-block:clamp(18px,4vw,56px) clamp(56px,8vw,104px)}
 .hero-grid{display:grid;gap:clamp(28px,4.5vw,72px);align-items:center}
-.hero-media{aspect-ratio:4/5}
+.hero-media{aspect-ratio:2/3}
+.hero-media img{object-position:center top}
 .hero-tag{position:absolute;z-index:2;left:12px;bottom:12px;display:inline-flex;align-items:center;gap:10px;background:rgba(255,252,246,.94);padding:9px 14px;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
 .hero-tag b{font-weight:500}
 .hero-text{max-width:34rem}
@@ -76,8 +77,8 @@ section,[id]{scroll-margin-top:84px}
 .btn-ghost{background:transparent;color:var(--ink)}
 .btn-ghost:hover{background:var(--ink);color:var(--cream)}
 @media (min-width:900px){
-  .hero-grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
-  .hero-media{order:2;aspect-ratio:5/6}
+  .hero-grid{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}
+  .hero-media{order:2}
 }
 
 /* Collection */
@@ -179,8 +180,9 @@ section,[id]{scroll-margin-top:84px}
 <main id="home">
   <section class="hero" id="top">
     <div class="wrap hero-grid">
-      <a class="imgbox hero-media" id="heroMedia" href="#peacock-kanjivaram">
-        <span class="hero-tag">Featured <b>Peacock Kanjivaram</b> →</span>
+      <a class="imgbox hero-media" id="heroMedia" href="#collection">
+        <img src="images/model-hero.jpg" alt="Model wearing an ivory saree with a gold zari border and pallu" width="1024" height="1536" fetchpriority="high">
+        <span class="hero-tag">Explore <b>the collection</b> →</span>
       </a>
       <div class="hero-text">
         <p class="eyebrow">Handwoven sarees · Curated collection</p>
@@ -644,7 +646,6 @@ if(CONFIG.whatsapp){
   const n=CONFIG.whatsapp;
   $('#footNum').innerHTML=`WhatsApp <span class="num">+${n.slice(0,2)} ${n.slice(2,7)} ${n.slice(7)}</span>`;
 }
-fillImg($('#heroMedia'),SAREES[0],'drape','Peacock Kanjivaram saree, full drape',true);
 renderGrid();
 window.addEventListener('hashchange',route);
 route();
